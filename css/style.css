@@ -1,0 +1,654 @@
+:root {
+    --background: #f4f6f8;
+    --surface: #ffffff;
+    --surface-alt: #f8fafc;
+
+    --text: #172033;
+    --secondary-text: #667085;
+
+    --border: #e4e7ec;
+
+    --accent: #2563eb;
+    --accent-dark: #1d4ed8;
+    --accent-light: #eff6ff;
+
+    --header-background: #173b8f;
+
+    --footer-background: #111827;
+
+    --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.06);
+    --shadow-md: 0 4px 12px rgba(16, 24, 40, 0.08);
+
+    --sidebar-width: 230px;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+}
+
+
+/* For the Dark Theme */
+
+[data-theme="dark"] {
+    --background: #101828;
+    --surface: #182230;
+    --surface-alt: #1d2939;
+
+    --text: #f2f4f7;
+    --secondary-text: #98a2b3;
+
+    --border: #344054;
+
+    --accent: #60a5fa;
+    --accent-dark: #3b82f6;
+    --accent-light: #172554;
+
+    --header-background: #172554;
+
+    --footer-background: #0b1120;
+
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+
+/* For the Header */
+
+.header {
+    background: var(--header-background);
+    color: white;
+
+    padding: 24px 32px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.header-content {
+    max-width: 1440px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.header h1 {
+    font-size: 28px;
+    line-height: 1.2;
+
+    margin-bottom: 6px;
+
+    font-weight: 700;
+}
+
+
+.header p {
+    font-size: 14px;
+
+    color: rgba(255, 255, 255, 0.82);
+}
+
+
+/* Theme button */
+
+#theme-toggle {
+    flex-shrink: 0;
+
+    padding: 9px 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: var(--radius-sm);
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+#theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.16);
+
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+
+/* Layout for Dashboard */
+
+.dashboard-layout {
+    max-width: 1440px;
+
+    margin: 0 auto;
+
+    display: flex;
+
+    min-height: calc(100vh - 160px);
+}
+
+
+/* For Sidebar */
+
+.sidebar {
+    width: var(--sidebar-width);
+
+    flex-shrink: 0;
+
+    background: var(--surface);
+
+    border-right: 1px solid var(--border);
+
+    padding: 24px 14px;
+}
+
+
+.sidebar nav {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    position: sticky;
+
+    top: 20px;
+}
+
+
+.nav-link {
+    display: block;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Navigation hover */
+.nav-link:hover {
+    background: #1e40af;;
+    color: white;
+}
+
+.nav-link.active {
+    background: var(--header-background);
+    color: white;
+}
+
+
+/* Main Content */
+
+.main-content {
+    flex: 1;
+
+    min-width: 0;
+
+    padding: 30px;
+}
+
+
+/* For the Dashboard */
+
+.dashboard-section {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    padding: 24px;
+
+    margin-bottom: 24px;
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+
+.section-heading h2 {
+    font-size: 20px;
+
+    line-height: 1.3;
+
+    margin-bottom: 5px;
+}
+
+
+.section-heading p {
+    color: var(--secondary-text);
+
+    font-size: 14px;
+}
+
+
+/* Statistics */
+
+.statistics {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.stat-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    padding: 22px;
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+.stat-card h3 {
+    color: var(--secondary-text);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+
+.stat-card p {
+    color: var(--text);
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+
+/* For Searching Countries */
+
+.controls {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+
+.search-box,
+.region-box {
+    min-width: 0;
+}
+
+
+.controls label,
+.comparison-controls label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+.controls input,
+.controls select,
+.comparison-controls select {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-sm);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.controls input::placeholder {
+    color: var(--secondary-text);
+}
+
+
+.controls input:focus,
+.controls select:focus,
+.comparison-controls select:focus {
+    border-color: var(--accent);
+
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* For the Chart */
+
+.chart-container {
+    width: 100%;
+
+    min-height: 340px;
+
+    position: relative;
+}
+
+
+.chart-container canvas {
+    max-width: 100%;
+}
+
+
+/* Ranking the Countries */
+
+.ranking-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+
+.ranking-card {
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    padding: 20px;
+}
+
+
+.ranking-card h2 {
+    font-size: 17px;
+
+    margin-bottom: 16px;
+}
+
+
+#top-populous-list,
+#least-populous-list {
+    padding-left: 25px;
+}
+
+
+#top-populous-list li,
+#least-populous-list li {
+    padding: 9px 4px;
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 14px;
+}
+
+
+#top-populous-list li:last-child,
+#least-populous-list li:last-child {
+    border-bottom: none;
+}
+
+
+/* Statistics of Countries */
+
+#country-stats {
+    min-height: 120px;
+}
+
+
+#country-stats p {
+    color: var(--secondary-text);
+
+    font-size: 14px;
+}
+
+
+/* Comparing Countries */
+
+.comparison-controls {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+}
+
+
+#comparison-results {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+}
+
+
+.comparison-card {
+    background: var(--surface-alt);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-md);
+
+    padding: 20px;
+}
+
+
+.comparison-card h3 {
+    color: var(--accent);
+
+    font-size: 17px;
+
+    margin-bottom: 15px;
+}
+
+
+.comparison-card p {
+    color: var(--secondary-text);
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+}
+
+
+.comparison-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Footer Part */
+
+.footer {
+    padding: 22px 20px;
+
+    background: var(--footer-background);
+
+    color: rgba(255, 255, 255, 0.75);
+
+    text-align: center;
+
+    font-size: 13px;
+}
+
+
+/* For Responsiveness on Tablet */
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        width: 190px;
+    }
+
+    .main-content {
+        padding: 22px;
+    }
+
+    .statistics {
+        grid-template-columns: 1fr;
+    }
+
+    .ranking-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* For Responsivenes on Mobile Phones */
+
+@media (max-width: 700px) {
+
+    .header {
+        padding: 20px;
+    }
+
+
+    .header-content {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 16px;
+    }
+
+
+    .header h1 {
+        font-size: 23px;
+    }
+
+
+    .dashboard-layout {
+        display: block;
+    }
+
+
+    .sidebar {
+        width: 100%;
+
+        border-right: none;
+
+        border-bottom: 1px solid var(--border);
+
+        padding: 10px 14px;
+    }
+
+
+    .sidebar nav {
+        position: static;
+
+        flex-direction: row;
+
+        overflow-x: auto;
+
+        gap: 5px;
+    }
+
+
+    .nav-link {
+        white-space: nowrap;
+    }
+
+
+    .main-content {
+        padding: 16px;
+    }
+
+
+    .dashboard-section {
+        padding: 18px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+
+    .comparison-controls {
+        grid-template-columns: 1fr;
+    }
+
+
+    #comparison-results {
+        grid-template-columns: 1fr;
+    }
+
+
+    .chart-container {
+        min-height: 280px;
+    }
+
+}
