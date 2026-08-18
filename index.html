@@ -1,417 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>World Population Dashboard</title>
-
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-    <header class="header">
-
-        <div class="header-content">
-
-            <div>
-                <h1>World Population Dashboard</h1>
-
-                <p>
-                    Explore population statistics from countries around the world.
-                </p>
-            </div>
-
-            <button id="theme-toggle" type="button">
-                Dark Mode
-            </button>
-
-        </div>
-
-    </header>
-
-    <div class="dashboard-layout">
-
-        <aside class="sidebar">
-
-            <nav>
-
-                <a href="#dashboard" class="nav-link">
-                    Dashboard
-                </a>
-
-                <a href="#countries" class="nav-link">
-                    Countries
-                </a>
-
-                <a href="#comparison" class="nav-link">
-                    Compare Countries
-                </a>
-
-            </nav>
-
-        </aside>
-
-
-        <!-- Begining of Content -->
-        <main class="main-content">
-
-            <section id="dashboard" class="dashboard-section">
-
-                <div class="section-heading">
-                    <h2>Global Overview</h2>
-
-                    <p>
-                        A summary of population data from the countries
-                        provided by the REST Countries API.
-                    </p>
-                </div>
-
-
-                <div class="statistics">
-
-                    <div class="stat-card">
-
-                        <h3>Global Population</h3>
-
-                        <p id="total-population">
-                            --
-                        </p>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <h3>Total Countries</h3>
-
-                        <p id="total-countries">
-                            --
-                        </p>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <h3>Selected Region</h3>
-
-                        <p id="selected-region">
-                            All Regions
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- For Search and Filter -->
-            <section class="dashboard-section">
-
-                <div class="section-heading">
-
-                    <h2>Explore Countries</h2>
-
-                    <p>
-                        Search for a country or filter countries by region.
-                    </p>
-
-                </div>
-
-
-                <div class="controls">
-
-                    <div class="search-box">
-
-                        <label for="country-search">
-                            Search Country
-                        </label>
-
-                        <input
-                            type="search"
-                            id="country-search"
-                            placeholder="Search for a country..."
-                        >
-
-                    </div>
-
-
-                    <div class="region-box">
-
-                        <label for="region-select">
-                            Select Region
-                        </label>
-
-                        <select id="region-select">
-
-                            <option value="all">
-                                All Regions
-                            </option>
-
-                            <option value="Africa">
-                                Africa
-                            </option>
-
-                            <option value="Americas">
-                                Americas
-                            </option>
-
-                            <option value="Asia">
-                                Asia
-                            </option>
-
-                            <option value="Europe">
-                                Europe
-                            </option>
-
-                            <option value="Oceania">
-                                Oceania
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- Regional Population -->
-            <section class="dashboard-section">
-
-                <div class="section-heading">
-
-                    <h2>Population by Region</h2>
-
-                    <p>
-                        Compare the total population of each region.
-                    </p>
-
-                </div>
-
-
-                <div class="chart-container">
-
-                    <canvas id="region-chart"></canvas>
-
-                </div>
-
-            </section>
-
-
-            <!-- Ranking the Populatinos of Countries -->
-            <section class="dashboard-section">
-
-                <div class="ranking-grid">
-
-                    <div class="ranking-card">
-
-                        <h2>
-                            Top 10 Most Populous
-                        </h2>
-
-                        <ol id="top-populous-list">
-
-                            <!-- JavaScript will insert countries here -->
-
-                        </ol>
-
-                    </div>
-
-                    <div class="ranking-card">
-
-                        <h2>
-                            Top 10 Least Populous
-                        </h2>
-
-                        <ol id="least-populous-list">
-
-                        </ol>
-
-                    </div>
-
-
-                </div>
-
-            </section>
-
-
-            <!-- Statistics for Different Countries -->
-            <section id="countries" class="dashboard-section">
-
-                <div class="section-heading">
-
-                    <h2>Country Statistics</h2>
-
-                    <p>
-                        Search for a country to view its population,
-                        area and other available statistics.
-                    </p>
-
-                </div>
-
-
-                <div id="country-stats">
-
-                    <p>
-                        Search for a country to view its statistics.
-                    </p>
-
-                </div>
-
-            </section>
-
-
-            <!-- Comparing Countries -->
-            <section id="comparison" class="dashboard-section">
-
-                <div class="section-heading">
-
-                    <h2>Compare Two Countries</h2>
-
-                    <p>
-                        Select two countries to compare their population,
-                        area and population density.
-                    </p>
-
-                </div>
-
-
-                <div class="comparison-controls">
-
-
-                    <div>
-
-                        <label for="country-one">
-                            Country 1
-                        </label>
-
-                        <select id="country-one">
-
-                            <option value="">
-                                Select a country
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div>
-
-                        <label for="country-two">
-                            Country 2
-                        </label>
-
-                        <select id="country-two">
-
-                            <option value="">
-                                Select a country
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                </div>
-
-
-                <div id="comparison-results">
-
-
-                    <div class="comparison-card">
-
-                        <h3>
-                            Country 1
-                        </h3>
-
-                        <p>
-                            Population:
-                            <span id="compare-population-one">
-                                --
-                            </span>
-                        </p>
-
-                        <p>
-                            Area:
-                            <span id="compare-area-one">
-                                --
-                            </span>
-                        </p>
-
-                        <p>
-                            Population Density:
-                            <span id="compare-density-one">
-                                --
-                            </span>
-                        </p>
-
-                    </div>
-
-
-                    <div class="comparison-card">
-
-                        <h3>
-                            Country 2
-                        </h3>
-
-                        <p>
-                            Population:
-                            <span id="compare-population-two">
-                                --
-                            </span>
-                        </p>
-
-                        <p>
-                            Area:
-                            <span id="compare-area-two">
-                                --
-                            </span>
-                        </p>
-
-                        <p>
-                            Population Density:
-                            <span id="compare-density-two">
-                                --
-                            </span>
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="chart-container">
-
-                    <canvas id="comparison-chart"></canvas>
-
-                </div>
-
-            </section>
-
-        </main>
-
-    </div>
-
-
-    <!-- The Footer -->
-    <footer class="footer">
-
+<!-- For the Header -->
+<header class="header">
+    <div class="header-content">
+        <div>
+        <h1>World Population Dashboard</h1>
         <p>
-            World Population Dashboard
+            Explore population statistics from countries around the world.
         </p>
-
-    </footer>
-
-
-    <script src="js/script.js"></script>
-
+        </div>
+        <button id="theme-toggle" type="button">
+            Dark Mode
+        </button>
+    </div>
+</header>
+<!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+<!-- For the Sidebar -->
+<aside class="sidebar">
+    <nav>
+        <a href="#dashboard" class="nav-link active">
+            Dashboard
+        </a>
+        <a href="#countries" class="nav-link">
+            Countries
+        </a>
+        <a href="#comparison" class="nav-link">
+            Compare Countries
+        </a>
+    </nav>
+<!-- Search and Filter -->
+<div class="sidebar-controls">
+    <div class="sidebar-heading">
+        <p>SEARCH & FILTER</p>
+    </div>
+    <div class="search-box">
+        <label for="country-search">
+            Search Country
+        </label>
+    <input
+        type="search"
+        id="country-search"
+        list="country-suggestions"
+        placeholder="Search country..."
+        autocomplete="off"
+    >
+    <datalist id="country-suggestions"></datalist>
+    <p
+        id="country-search-error"
+        class="search-error"
+    ></p>
+    </div>
+    <div class="region-box">
+        <label for="continent-select">
+            Select Continent
+        </label>
+    <select id="continent-select">
+        <option value="all">
+            All Continents
+        </option>
+        <option value="Africa">
+            Africa
+        </option>
+        <option value="Asia">
+            Asia
+        </option>
+        <option value="Europe">
+            Europe
+        </option>
+        <option value="North America">
+            North America
+        </option>
+        <option value="South America">
+            South America
+        </option>
+        <option value="Oceania">
+            Oceania
+        </option>
+    </select>
+    </div>
+</div>
+</aside>
+<!-- Beginning of Content -->
+    <main class="main-content">
+<!-- Global Overview -->
+<section
+        id="dashboard"
+        class="dashboard-section overview-section"
+    >
+<div class="section-heading compact-heading">
+    <div>
+        <span class="section-label">
+            OVERVIEW
+        </span>
+    <h2>
+        Global Overview
+    </h2>
+    </div>
+    </div>
+    <div class="statistics">
+    <div class="stat-card">
+        <h3>
+        Global Population
+        </h3>
+        <p id="total-population">
+            --
+        </p>
+        <span>
+            Population across project countries
+        </span>
+    </div>
+    <div class="stat-card">
+    <h3>
+        Total Countries
+    </h3>
+    <p id="total-countries">
+        --
+    </p>
+    <span>
+        UN member and observer states
+    </span>
+    </div>
+    <div class="stat-card">
+        <h3>
+            Selected Continent
+        </h3>
+    <p id="selected-continent">
+        All Continents
+    </p>
+    <span>
+        Current dashboard selection
+    </span>
+    </div>
+</div>
+</section>
+<!-- Explore Results -->
+<section
+    id="countries"
+    class="dashboard-section explore-section"
+    >
+    <div class="section-heading">
+    <div>
+        <span class="section-label">
+            COUNTRY EXPLORER
+        </span>
+    <h2>
+        Explore Results
+    </h2>
+    <p id="explore-results-description">
+        Population statistics for all continents.
+    </p>
+    </div>
+    </div>
+    <div id="explore-results">
+    <div class="explore-layout">
+<!-- Main Explore Chart -->
+    <div class="explore-main-card">
+    <div class="chart-heading">
+        <h3>
+            Population Statistics
+        </h3>
+        <p>
+            Population, area and population density.
+        </p>
+    </div>
+    <div class="chart-container explore-chart-container">
+        <canvas id="explore-chart"></canvas>
+    </div>
+    </div>
+ <!-- Explore Summary -->
+    <div class="explore-summary">
+    <div class="mini-stat">
+    <span>
+        Population
+    </span>
+    <strong id="explore-population">
+         --
+    </strong>
+    </div>
+    <div class="mini-stat">
+        <span id="explore-countries-label">
+            Countries
+        </span>
+    <strong id="explore-countries">
+        --
+    </strong>
+    </div>
+    <div class="mini-stat">
+        <span>
+          Selection
+        </span>
+    <strong id="explore-selection">
+        All Continents
+    </strong>
+    </div>
+    </div>
+    </div>
+<!-- Country Statistics -->
+    <div id="country-stats">
+    <div class="statistics">
+    <div class="stat-card">
+        <h3>
+            Total Area
+        </h3>
+        <p>
+            --
+        </p>
+    </div>
+    <div class="stat-card">
+        <h3>
+            Region
+        </h3>
+        <p>
+            --
+        </p>
+    </div>
+    <div class="stat-card">
+        <h3>
+            Population Density
+        </h3>
+        <p>
+            --
+        </p>
+    </div>
+    </div>
+    </div>
+    </div>
+</section>
+<!-- Population Rankings -->
+<section
+    class="dashboard-section rankings-section">
+    <div class="section-heading ranking-heading">  
+    <div>
+    <span class="section-label">
+        RANKINGS
+    </span>
+    <h2>
+        Population Rankings
+    </h2>
+    <p>
+        Compare the most and least populous countries.
+    </p>
+    </div>
+<div class="ranking-filter">
+    <label for="ranking-continent-select">
+        Continent
+    </label>
+    <select id="ranking-continent-select">
+        <option value="all">
+            All Continents
+        </option>
+        <option value="Africa">
+            Africa
+        </option>
+        <option value="Asia">
+            Asia
+        </option>
+        <option value="Europe">
+            Europe
+        </option>
+        <option value="North America">
+            North America
+        </option>
+        <option value="South America">
+            South America
+        </option>
+        <option value="Oceania">
+            Oceania
+        </option>
+    </select>
+</div>
+</div>
+<div class="ranking-grid">
+<div class="ranking-card">
+    <h3 id="top-ranking-title">
+        Top 10 Most Populous Countries
+    </h3>
+    <ol id="top-populous-list"></ol>
+</div>
+<div class="ranking-card">
+    <h3 id="bottom-ranking-title">
+        Top 10 Least Populous Countries
+    </h3>
+    <ol id="least-populous-list"></ol>
+</div>
+</div>
+</section>
+<!-- Population by Region -->
+<section
+class="dashboard-section region-section">
+<div class="section-heading">
+<div>
+    <span class="section-label">
+        REGIONAL DATA
+    </span>
+    <h2>
+        Population by Region
+    </h2>
+    <p>
+        Compare population totals across geographic regions.
+    </p>
+</div>
+</div>
+<div class="chart-container region-chart-container">
+<canvas id="region-chart"></canvas>
+</div>
+</section>
+<!-- Comparing Countries -->
+<section
+id="comparison"
+class="dashboard-section comparison-section">
+<div class="section-heading">
+<div>
+    <span class="section-label">
+        COMPARISON
+    </span>
+    <h2>
+        Compare Two Countries
+    </h2>
+    <p>
+        Compare population, area and population density.
+    </p>
+</div>
+</div>
+<div class="comparison-controls">
+<div>
+    <label for="country-one">
+        Country 1
+    </label>
+    <select id="country-one">
+        <option value="">
+            Select a country
+        </option>
+    </select>
+</div>
+<div>
+    <label for="country-two">
+        Country 2
+    </label>
+    <select id="country-two">
+        <option value="">
+            Select a country
+        </option>
+    </select>
+</div>
+</div>
+<div id="comparison-results">
+    <div class="comparison-card">
+        <span class="comparison-label">
+           COUNTRY 1
+       </span>
+        <h3>
+              Country 1
+        </h3>
+        <p>
+            Population:
+        <span id="compare-population-one">
+                    --
+        </span>
+        </p>
+        <p>
+            Area:
+        <span id="compare-area-one">
+            --
+        </span>
+        </p>
+        <p>
+            Population Density:
+        <span id="compare-density-one">
+            --
+        </span>
+        </p>
+    </div>
+    <div class="comparison-card">
+        <span class="comparison-label">
+            COUNTRY 2
+        </span>
+        <h3>
+            Country 2
+        </h3>
+        <p>
+            Population:
+        <span id="compare-population-two">
+            --
+        </span>
+        </p>
+        <p>
+            Area:
+        <span id="compare-area-two">
+            --
+        </span>
+        </p>
+        <p>
+            Population Density:
+        <span id="compare-density-two">
+            --
+        </span>
+        </p>
+    </div>
+</div>
+<div class="chart-container comparison-chart-container">
+    <canvas id="comparison-chart"></canvas>
+</div>
+</section>
+</main>
+</div>
+<!-- The Footer -->
+<footer class="footer">
+    <p>
+        World Population Dashboard
+    </p>
+</footer>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="js/script.js"></script>
 </body>
-
 </html>
