@@ -1012,11 +1012,16 @@ function createRegionChart() {
                     ]
                 },
                 options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    animation:
-                        chartAnimation,
-                    plugins: {
+    responsive: true,
+
+    maintainAspectRatio: false,
+
+    animation: {
+        duration: 1500,
+        easing: "easeOutQuart"
+    },
+
+    plugins: {
                         legend: {
                             display: false
                         },
